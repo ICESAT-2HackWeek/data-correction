@@ -5,7 +5,7 @@ Instructors: Maya Becker (m3becker@ucsd.edu) and Susheel Adusumilli (suadusum@uc
 
 ## Tutorials:
 
-Part 1: Application of geophysical corrections over ice shelves
+Part 1: Application of geophysical corrections over ice shelves   
 Part 2: Derivation of ice-shelf height changes and conversion to mass changes
 
 ## Learning objectives:
