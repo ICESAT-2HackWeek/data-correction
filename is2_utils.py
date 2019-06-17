@@ -1,10 +1,31 @@
 import numpy as np
+from datetime import datetime as dt
+import time
 
 CDR = 180. / np.pi
 E2 = 6.694379852*1e-3
 E = np.sqrt(E2)
 EARTH_RADIUS_KM = RE = 6378.1370
 EARTH_RADIUS_M = 6378137.0
+
+def date2fracyr(dates):
+    fracyr = np.empty_like(dates)
+    i = 0
+    for date in dates:
+        def sinceEpoch(date): # returns seconds since epoch
+            return time.mktime(date.timetuple())
+        s = sinceEpoch
+
+        year = date.year
+        startOfThisYear = dt(year=year, month=1, day=1)
+        startOfNextYear = dt(year=year+1, month=1, day=1)
+
+        yearElapsed = s(date) - s(startOfThisYear)
+        yearDuration = s(startOfNextYear) - s(startOfThisYear)
+        fraction = yearElapsed/yearDuration
+        fracyr[i] = date.year + fraction
+        i+=1
+    return fracyr
 
 def ll2ps(lon, lat, slat=71, slon=0, hemi='s', units='km'):
     """ Spherical lon/lat -> Polar Steregraphic x/y.
